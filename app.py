@@ -5,9 +5,9 @@ import json
 import os
 import numpy
 
-from google.cloud import language_v1
 from flask import Flask
 from flask import render_template
+
 
 app = Flask(__name__)
 
