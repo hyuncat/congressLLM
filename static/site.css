@@ -2,8 +2,8 @@
     background-color: #3498db;
     color: #fff;
     text-align: center;
-    padding: 20px;
-    font-size: 40px;
+    padding: 10px;
+    font-size: 20px;
 }
 
 .themed-title-bar p {
@@ -33,6 +33,41 @@ body {
     color: inherit;
     font-weight: bold;
     margin: 0 200px;
+}
+
+.search-form {
+    text-align: center;
+    padding: 20px; /* Adjust the padding as needed */
+}
+
+.search-container {
+    display: inline-block;
+    position: relative;
+}
+
+.search-container input[type="text"] {
+    width: 200px; /* Adjust the width as needed */
+    padding: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+}
+
+.search-container button {
+    padding: 10px 20px; /* Adjust the padding as needed */
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Additional styles for responsiveness */
+@media screen and (max-width: 600px) {
+    .search-container input[type="text"] {
+        width: 100%; /* Full width on smaller screens */
+    }
 }
 
 .body-content {

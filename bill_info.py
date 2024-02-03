@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 import os
-from datetime import datetime
+# from datetime import datetime
 
 # Get links to recent legislation, if further info is needed
 # https://www.senate.gov/pagelayout/legislative/b_three_sections_with_teasers/active_leg_page.htm 
@@ -22,5 +22,3 @@ def get_bill_summary_link(type, n):
     return base_url
 
 print(get_bill_summary_link("s", 2226))
-
-# Return link

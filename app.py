@@ -5,8 +5,7 @@ import json
 import os
 import numpy
 
-from flask import Flask
-from flask import render_template
+from flask import Flask, render_template, request
 
 
 app = Flask(__name__)
@@ -36,6 +35,13 @@ def hello_there(name=None):
 @app.route("/api/data")
 def get_data():
     return app.send_static_file("data.json")
+
+@app.route("/search")
+def search():
+    query = request.args.get('query')
+    # Perform search logic here based on the query
+    # Return the search results or render a new template
+    return render_template("search_results.html", query=query)
 
 if __name__ == '__main__':
     app.run(debug=True)

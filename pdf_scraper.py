@@ -6,11 +6,10 @@ base_url = "https://www.senate.gov/legislative/LIS/floor_activity/all-floor-acti
 response = requests.get(base_url)
 soup = BeautifulSoup(response.text, 'html.parser')
 
-# Find links to PDFs
+# Find links to PDFs (daily digest only)
 pdf_links = [a['href'] for a in soup.find_all('a', href=True) if a['href'].endswith('dailydigest.pdf')]
 for i in range(10):
     print(pdf_links[i])
-    
 
 # # Download PDFs
 # for pdf_link in pdf_links:
