@@ -5,7 +5,9 @@ import json
 import os
 import numpy
 
-from flask import Flask, render_template, request
+from flask import Flask
+from flask import render_template
+from flask import request
 
 
 app = Flask(__name__)

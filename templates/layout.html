@@ -9,7 +9,7 @@
 <body>
     <!-- Themed Title Bar -->
     <div class="themed-title-bar">
-        <h1>Bill Bites</h1>
+        <h1>The Congress Cut</h1>
     </div>
 
     <!-- Navbar -->
@@ -19,6 +19,8 @@
         <a href="{{ url_for('contact') }}" class="navbar-item">Contact</a>
     </div>
 
+<!-- Search Form and Dropdown Container -->
+<div class="search-dropdown-container">
     <!-- Search Form -->
     <form action="{{ url_for('search') }}" method="GET" class="search-form">
         <div class="search-container">
@@ -27,10 +29,29 @@
         </div>
     </form>
 
+    <!-- Dropdown Container -->
+    <div class="dropdown">
+        <!-- Add your dropdown content here -->
+        <select name="cars" id="cars">
+            <option value="artsmedia">Arts and Media</option>
+            <option value="business">Business</option>
+            <option value="education">Education</option>
+            <option value="financeeconomy">Finance and Economy</option>
+            <option value="immigration">Immigration</option>
+            <option value="jobs">Jobs</option>
+            <option value="justice">Justice</option>
+            <option value="military">Military</option>
+            <option value="religion">Religion</option>
+            <option value="technology">Technology</option>
+            <option value="transport">Transport</option>
+        </select>
+    </div>
+</div>
+
+
     <div class="body-content">
         {% block content %}
         {% endblock %}
-        <hr/>
         <footer>
             <p>&copy; 2024</p>
         </footer>

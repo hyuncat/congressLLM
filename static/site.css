@@ -35,18 +35,24 @@ body {
     margin: 0 200px;
 }
 
+body, h1, h2, p, label, select {
+    margin: 0;
+    padding: 0;
+}
+
 .search-form {
     text-align: center;
     padding: 20px; /* Adjust the padding as needed */
 }
 
+/* Updated styles for the search container */
 .search-container {
-    display: inline-block;
-    position: relative;
+    display: flex;
+    margin-right: 20px; /* Add margin for spacing */
 }
 
 .search-container input[type="text"] {
-    width: 200px; /* Adjust the width as needed */
+    width: 200px;
     padding: 10px;
     box-sizing: border-box;
     border: 1px solid #ccc;
@@ -55,12 +61,49 @@ body {
 }
 
 .search-container button {
-    padding: 10px 20px; /* Adjust the padding as needed */
+    padding: 10px 20px;
     background-color: #3498db;
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+
+/* Updated styles for the dropdown container */
+.dropdown {
+    text-align: center;
+    margin: 20px;
+}
+
+/* New container to hold both search and dropdown */
+.search-dropdown-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* Style for the label */
+label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+/* Style for the select dropdown */
+select {
+    width: 200px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+/* Style for the select dropdown when hovered */
+select:hover {
+    border-color: #555;
 }
 
 /* Additional styles for responsiveness */
