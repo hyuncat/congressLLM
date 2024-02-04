@@ -6,7 +6,6 @@ import os
 import numpy
 import csv
 import numpy as np
-import pandas as pd
 from vertexai.preview.language_models import TextGenerationModel
 import matplotlib
 import matplotlib.pyplot as plt
@@ -18,7 +17,7 @@ from flask import Flask
 from flask import render_template
 from flask import request
 
-def interview(text ,temperature: float = .2,):
+def interview(text ,temperature: float = .8):
     """Ideation example with a Large Language Model"""
 
     # TODO developer - override these parameters as needed:
@@ -83,6 +82,7 @@ counter_list = [0]*20
 
 
 app = Flask(__name__)
+
 with open('static/full_data.csv', 'r') as file:
     # Step 2: Create a CSV reader
     csv_reader = csv.reader(file)
@@ -103,19 +103,17 @@ def search_proceedings(query, search_type):
         for row in data_matrix:
             if row[3].find(query):
                     results.append({'title': query , 'content': row[0]})
-                    switch_counter(query,counter_list)
-                    
-
-                    
-                    
-
         return results
     elif search_type=="date":
         return
 
 
-
 topic_list = ["Agriculture", "Civil Rights", "Defense","Economy","Education","Energy" , "Environment", "Foreign Policy" ,"Healthcare", "Immigration", "Infrastructure", "Judicial System", "Labor", "National Security", "Taxation", "Technology", "Trade", "Transportation", "Social Welfare", "Veterans Affairs"]
+
+for i in topic_list:
+    for row in data_matrix:
+        if not (i.find(row[3]) == -1):
+            switch_counter(i, counter_list)
 
 @app.route("/")
 def home():
