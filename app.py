@@ -60,7 +60,7 @@ def switch_counter(category, list):
 """
 app = Flask(__name__)
 
-def search_proceedings(query):
+def search_proceedings(query, queryoptions):
     # Implement your search logic here
     # if query == "Business":
     #     return [{'title': 'You picked Business!', 'content': 'Details for Business'}]
@@ -115,7 +115,7 @@ def search():
     results = search_proceedings(query, search_type)
 
     # Render the template with the search results
-    return render_template("search_results.html", query=query, results=results)
+    return render_template("search_results.html", query=query, search_type=search_type, results=results)
 
 def get_top_ten_list():
     return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
