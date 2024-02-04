@@ -3,8 +3,10 @@ from datetime import datetime
 import argparse
 import json
 import os
-import numpy as np
+import numpy
 import csv
+import numpy as np
+import pandas as pd
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -15,6 +17,7 @@ import base64
 from flask import Flask
 from flask import render_template
 from flask import request
+
 def switch_counter(category, list):
     if category == "Agriculture":
         list[0] +=1
@@ -61,6 +64,7 @@ def switch_counter(category, list):
 """
 app = Flask(__name__)
 
+
 with open('static/full_data.csv', 'r') as file:
     # Step 2: Create a CSV reader
     csv_reader = csv.reader(file)
@@ -89,8 +93,6 @@ def search_proceedings(query, search_type):
     elif search_type=="date":
         return
 
-    # return [{'title': 'Proceeding 1', 'content': 'Details for Proceeding 1'},
-            # {'title': 'Proceeding 2', 'content': 'Details for Proceeding 2'}]
 
 @app.route("/")
 def home():
@@ -131,7 +133,7 @@ def search():
    
 
     # Call your search algorithm function
-    results = search_proceedings(query, search_type)
+    results = search_db(query, search_type)
 
     # Render the template with the search results
     return render_template("search_results.html", query=query, search_type=search_type, results=results)
