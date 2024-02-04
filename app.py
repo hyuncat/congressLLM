@@ -32,19 +32,32 @@ for row in data_matrix:
     if row[3][0] == '{':
         np.delete(row[3],0)
 
+def formatComplex(text):
+    match = re.search(r"'(.*?)'", text)
+    if match:
+        extracted_text = match.group(1)  # Extracted text within single quotes
+        # Replace slashes with comma + space
+        modified_text = re.sub(r'/', ', ', extracted_text)
+        return modified_text
+    else:
+        return
+
 def search_proceedings(query, search_type):
     results = []
-   
+    relev = {}
     if search_type=="relevance":
         for row in data_matrix:
-            if row[3].find(query):
-                    results.append({'title': query , 'content': row[0]})
-                    
+            if query in row[3]:
+                    results.append({'title': formatComplex(row[2]), 'content': row[0]})
+                    conf_str = re.search(r'(?<=:\s)(\d+\.\d+)', row[2])
+                    if conf_str:
+                        conf = float(conf_str.group())
+                        relev[row[0]] = conf
 
-                    
-                    
-
+        # Sort results based on relevance score
+        results.sort(key=lambda x: relev.get(x['content'], 0), reverse=False)
         return results
+
     elif search_type=="date":
         return
 
