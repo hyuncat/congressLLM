@@ -45,12 +45,6 @@ body, h1, h2, p, label, select {
     padding: 20px; /* Adjust the padding as needed */
 }
 
-/* Updated styles for the search container */
-.search-container {
-    display: flex;
-    margin-right: 20px; /* Add margin for spacing */
-}
-
 .search-container input[type="text"] {
     width: 200px;
     padding: 10px;
@@ -69,10 +63,18 @@ body, h1, h2, p, label, select {
     cursor: pointer;
 }
 
+/* Updated styles for the search container */
+.search-container {
+    display: flex;
+    align-items: center;
+}
+
 /* Updated styles for the dropdown container */
 .dropdown {
     text-align: center;
-    margin: 20px;
+    margin-right: 10px; /* Adjust margin for spacing */
+    position: relative;
+    display: inline-block;
 }
 
 /* New container to hold both search and dropdown */
