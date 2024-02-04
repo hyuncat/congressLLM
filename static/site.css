@@ -104,6 +104,7 @@ select {
 /* Style for the select dropdown when hovered */
 select:hover {
     border-color: #555;
+    cursor: pointer;
 }
 
 .body-content {
