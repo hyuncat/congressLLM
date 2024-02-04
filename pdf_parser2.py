@@ -50,6 +50,35 @@ def trim_text(text: str):
     """ Removes spaces and newline characters. """ 
     return text.strip().replace("\n", " ")
 
+
+# Classify the input text into categories.
+def complex_classify(text, verbose=False):
+    language_client = language_v2.LanguageServiceClient()
+
+    document = language_v2.Document(
+        content=text, type_=language_v2.Document.Type.PLAIN_TEXT
+    )
+    response = language_client.classify_text(request={"document": document})
+    categories = response.categories
+
+    result = {}
+
+    for category in categories:
+        # Turn the categories into a dictionary of the form:
+        # {category.name: category.confidence}, so that they can
+        # be treated as a sparse vector.
+        result[category.name] = category.confidence
+
+    if verbose:
+        print(text)
+        for category in categories:
+            print("=" * 20)
+            print("{:<16}: {}".format("category", category.name))
+            print("{:<16}: {}".format("confidence", category.confidence))
+
+    return result
+
+
 # Create database of Document AI generated snippets on all PDFs
 def parse_pdf(url, date):
 
@@ -79,24 +108,34 @@ def parse_pdf(url, date):
         text = document_object.text
         text_blocks = []
         date_vec = []
+        complex_cat = []
+        simple_cat = []
 
+        simple_keys = pd.read_csv('./static/categoryreduction.csv', header=0)
         for page in document_object.pages:
             for block in page.blocks:
                 startIndex = int(block.layout.text_anchor.text_segments[0].start_index)
                 endIndex = int(block.layout.text_anchor.text_segments[0].end_index)
      
                 subtext = trim_text(text[startIndex:endIndex])
+                c_cat = complex_classify(subtext, verbose=False)
 
                 text_blocks.append(subtext)
                 date_vec.append(date)
+                complex_cat.append(c_cat)
+
             
         df = pd.DataFrame({
             'Paragraph': text_blocks,
-            'Date': date_vec
+            'Date': date_vec,
+            'ComplexCategory': complex_cat
         })
         df.to_csv('./static/docAI_parse.csv', index=False)
         return df
     
+
+
+
 def create_data():
     # Create dataframe with PDF links and dates
     base_url = "https://www.senate.gov/legislative/LIS/floor_activity/all-floor-activity-files.htm"
@@ -111,6 +150,7 @@ def create_data():
     big_df.to_csv('./static/full_data.csv', index=False)
 
     return big_df
+
 
 
 # Run
