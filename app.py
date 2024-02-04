@@ -41,25 +41,39 @@ def formatComplex(text):
         return modified_text
     else:
         return
+    
+# Define a function to extract the date from a row
+def extract_date(str):
+    return datetime.strptime(str, "%b %d, %Y")
 
 def search_proceedings(query, search_type):
     results = []
     relev = {}
+    dates = {}
+    for row in data_matrix:
+        if query in row[3]:
+                results.append({'title': formatComplex(row[2]), 'date': row[1], 'content': row[0]})
+                conf_str = re.search(r'(?<=:\s)(\d+\.\d+)', row[2])
+                if conf_str:
+                    conf = float(conf_str.group())
+                    relev[row[0]] = conf
+                date = extract_date(row[1])
+                dates[row[0]] = date
+
+    # Sort results based on relevance score
     if search_type=="relevance":
-        for row in data_matrix:
-            if query in row[3]:
-                    results.append({'title': formatComplex(row[2]), 'content': row[0]})
-                    conf_str = re.search(r'(?<=:\s)(\d+\.\d+)', row[2])
-                    if conf_str:
-                        conf = float(conf_str.group())
-                        relev[row[0]] = conf
-
-        # Sort results based on relevance score
         results.sort(key=lambda x: relev.get(x['content'], 0), reverse=False)
-        return results
 
-    elif search_type=="date":
-        return
+    elif search_type=="most_recent":
+        for date in dates:
+            results.sort(key=lambda x: dates.get(x['content'], 0), reverse=False)
+    
+    elif search_type=="by_oldest":
+        for date in dates:
+            results.sort(key=lambda x: dates.get(x['content'], 0), reverse=True)
+
+    return results
+
 
     # return [{'title': 'Proceeding 1', 'content': 'Details for Proceeding 1'},
             # {'title': 'Proceeding 2', 'content': 'Details for Proceeding 2'}]
