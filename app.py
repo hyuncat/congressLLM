@@ -3,24 +3,38 @@ from datetime import datetime
 import argparse
 import json
 import os
+import csv
 import numpy
-
 from flask import Flask
 from flask import render_template
 from flask import request
 
+# Step 1: Open the CSV file
+with open('INSERT_SARAH_DATABASE.csv', 'r') as file:
+    # Step 2: Create a CSV reader
+    csv_reader = csv.reader(file)
+    
+    # Step 3: Convert the CSV data into a list of lists
+    data_list = list(csv_reader)
+
+# Step 4: Convert the list of lists into a NumPy array
+data_matrix = np.array(data_list)
 
 app = Flask(__name__)
 
-def search_proceedings(query):
+def search_proceedings(query, search_type):
+    results = []
+    i = 0
     # Implement your search logic here
-    if query == "Business":
-        return [{'title': 'You picked Business!', 'content': 'Details for Business'}]
-    # You can use the selected_category and query to filter and rank proceedings
-    # Return a list of relevant proceedings based on your logic
-    # For now, just returning a sample list
-    return [{'title': 'Proceeding 1', 'content': 'Details for Proceeding 1'},
-            {'title': 'Proceeding 2', 'content': 'Details for Proceeding 2'}]
+    if search_type=="relevance":
+        for row in data_matrix:
+            for category, confidence in row[4].items:
+                if category == query:
+                    results[i] = ('title': row[3], 'content': row[1])
+                    i+=1
+
+        return results
+    elif search_type=="date":
 
 @app.route("/")
 def home():
@@ -51,10 +65,11 @@ def get_data():
 @app.route("/search")
 def search():
     query = request.args.get('query')
-    selected_category = request.args.get('cars')
+    search_type = request.args.get('queryoptions')
+   
 
     # Call your search algorithm function
-    results = search_proceedings(query)
+    results = search_proceedings(query, search_type, date)
 
     # Render the template with the search results
     return render_template("search_results.html", query=query, results=results)
