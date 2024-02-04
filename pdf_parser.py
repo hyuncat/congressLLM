@@ -1,11 +1,15 @@
-import requests
-from google.api_core.client_options import ClientOptions
-from google.cloud import documentai
-import pandas as pd
 import argparse
 import os
-from google.cloud import language_v2
+
 import numpy
+import pandas as pd
+
+import requests
+
+from google.api_core.client_options import ClientOptions
+from google.cloud import documentai
+from google.cloud import language_v2
+
 
 def classify(text, verbose=True):
     """Classify the input text into categories."""
@@ -37,9 +41,9 @@ def classify(text, verbose=True):
 
 
 
-PROJECT_ID = "linen-marking-413218"
+PROJECT_ID = os.environ.get('GCP_PROJECT_ID')
 LOCATION = "us"  # Format is 'us' or 'eu'
-PROCESSOR_ID = "16b9917b8213d461"  # Create processor in Cloud Console
+PROCESSOR_ID = os.environ.get('GCP_PROCESSOR_ID')  # Create processor in Cloud Console
 MIME_TYPE = "application/pdf"
 
 # Initialize Document AI client
