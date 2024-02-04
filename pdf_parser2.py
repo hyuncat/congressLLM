@@ -112,6 +112,7 @@ def parse_pdf(url, date):
         simple_cat = []
 
         simple_keys = pd.read_csv('./static/categoryreduction.csv', header=0)
+        count = 1
         for page in document_object.pages:
             for block in page.blocks:
                 startIndex = int(block.layout.text_anchor.text_segments[0].start_index)
@@ -119,16 +120,39 @@ def parse_pdf(url, date):
      
                 subtext = trim_text(text[startIndex:endIndex])
                 c_cat = complex_classify(subtext, verbose=False)
+                s_cat = {}
+
+                # Create dictionary of new simple categories + confidence values
+                for key in c_cat:
+                    s_cat_row = simple_keys[simple_keys['complex'] == key]
+                    if not s_cat_row.empty:
+                        if s_cat_row.shape[0] > 1:
+                            s_cat_key = s_cat_row.iloc[0, 1]
+                        else:
+                            s_cat_key = s_cat_row['simple']
+                    else:
+                        s_cat_key = "Other"
+                    s_cat.update({s_cat_key: c_cat[key]}) # Append key value pair to dictionary
+
+                # Create dictionary of new simple categories + confidence values
+                #s_cat_row = simple_keys[simple_keys['complex'] == c_cat]
+                #s_cat_key = s_cat_row['simple'].values[0]
+                #s_cat = {s_cat_key: c_cat[c_cat[s_cat_row['complex'].values[0]]]}
 
                 text_blocks.append(subtext)
                 date_vec.append(date)
                 complex_cat.append(c_cat)
+                simple_cat.append(s_cat)
+
+                print(f"Block {count} read.")
+                count += 1
 
             
         df = pd.DataFrame({
             'Paragraph': text_blocks,
             'Date': date_vec,
-            'ComplexCategory': complex_cat
+            'ComplexCategory': complex_cat,
+            'SimpleCategory': simple_cat
         })
         df.to_csv('./static/docAI_parse.csv', index=False)
         return df
@@ -162,4 +186,4 @@ def create_data():
 #more_df = parse_pdf(link, date)
 #print(more_df)
 
-create_data()
+df = create_data()
