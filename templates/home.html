@@ -10,32 +10,11 @@ Home
     {% endfor %}
 </ul>
 
-<!-- Matplotlib Histogram Placeholder -->
-<h2>Matplotlib Histogram</h2>
-<div id="histogram-plot"></div>
+<div class="histogram-container">
+    <h2>Matplotlib Histogram</h2>
+    <img src="data:image/png;base64,{{ plot_data }}" alt="Matplotlib Histogram" class="centered-image">
+</div>
 
-<script>
-    // Retrieve the base64-encoded plot data from Flask
-    var plotData = "{{ plot_data }}";
-
-    // Decode the base64 data
-    var decodedData = atob(plotData);
-
-    // Create a data URI
-    var dataURI = "data:image/png;base64," + plotData;
-
-    // Create a Plotly plot
-    var layout = { title: 'Histogram' };
-    var img = new Image();
-    img.src = dataURI;
-
-    Plotly.newPlot('histogram-plot', [{ x: [0], y: [0], type: 'scatter', mode: 'markers', marker: {opacity: 0} }], layout);
-
-    img.onload = function() {
-        // Add the Matplotlib plot as an image trace to the Plotly plot
-        Plotly.addTraces('histogram-plot', { x: [0], y: [0], type: 'scatter', mode: 'markers', marker: {opacity: 0, sizemode: 'diameter', sizeref: 0.1, sizex: img.width, sizey: img.height, source: 'histogram-plot', xref: 'x', yref: 'y'} });
-        img.onload = null;
-    }
 </script>
 
 {% endblock %}

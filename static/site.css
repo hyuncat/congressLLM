@@ -91,6 +91,16 @@ select {
     cursor: pointer;
 }
 
+/* Add these styles for centering the image */
+.histogram-container {
+    text-align: center;
+}
+
+.centered-image {
+    display: block;
+    margin: 0 auto;
+}
+
 /* Style for the select dropdown when hovered */
 select:hover {
     border-color: #555;
