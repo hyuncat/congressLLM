@@ -1,3 +1,4 @@
+Complex,Simple
 /Adult,Education
 /Arts & Entertainment/Celebrities & Entertainment News,Education
 /Arts & Entertainment/Other,Education
@@ -8,7 +9,7 @@
 /Arts & Entertainment/Entertainment Industry/Film & TV Industry,Education
 /Arts & Entertainment/Entertainment Industry/Recording Industry,Education
 /Arts & Entertainment/Entertainment Industry/Other,Education
-/Arts & Entertainment/Events & Listings/Bars, Clubs & Nightlife,Trade
+/Arts & Entertainment/Events & Listings/Bars Clubs & Nightlife,Trade
 /Arts & Entertainment/Events & Listings/Concerts & Music Festivals,Education
 /Arts & Entertainment/Events & Listings/Event Ticket Sales,Trade
 /Arts & Entertainment/Events & Listings/Expos & Conventions,Trade
@@ -41,7 +42,7 @@
 /Arts & Entertainment/Movies/Musical Films,Education
 /Arts & Entertainment/Movies/Romance Films,Education
 /Arts & Entertainment/Movies/Science Fiction & Fantasy Films,Education
-/Arts & Entertainment/Movies/Thriller, Crime & Mystery Films,Education
+/Arts & Entertainment/Movies/Thriller Crime & Mystery Films,Education
 /Arts & Entertainment/Movies/Other,Education
 /Arts & Entertainment/Music & Audio/CD & Audio Shopping,Education
 /Arts & Entertainment/Music & Audio/Classical Music,Education
@@ -174,7 +175,7 @@
 /Autos & Vehicles/Motor Vehicles (By Type)/Sedans,Transportation
 /Autos & Vehicles/Motor Vehicles (By Type)/Sports Cars,Transportation
 /Autos & Vehicles/Motor Vehicles (By Type)/Station Wagons,Transportation
-/Autos & Vehicles/Motor Vehicles (By Type)/Trucks, Vans & SUVs,Transportation
+/Autos & Vehicles/Motor Vehicles (By Type)/Trucks Vans & SUVs,Transportation
 /Autos & Vehicles/Motor Vehicles (By Type)/Other,Transportation
 /Autos & Vehicles/Personal Aircraft,Transportation
 /Autos & Vehicles/Vehicle Codes & Driving Laws/Drunk Driving Law,Transportation
@@ -188,7 +189,7 @@
 /Autos & Vehicles/Vehicle Parts & Services/Other,Transportation
 /Autos & Vehicles/Vehicle Shopping/Used Vehicles,Transportation
 /Autos & Vehicles/Vehicle Shopping/Vehicle Dealers & Retailers,Transportation
-/Autos & Vehicles/Vehicle Shopping/Vehicle Specs, Reviews & Comparisons,Transportation
+/Autos & Vehicles/Vehicle Shopping/Vehicle Specs Reviews & Comparisons,Transportation
 /Autos & Vehicles/Vehicle Shopping/Other,Transportation
 /Autos & Vehicles/Vehicle Shows,Transportation
 /Beauty & Fitness/Beauty Pageants,Education
@@ -407,9 +408,6 @@
 /Finance/Financial Planning & Management/Inheritance & Estate Planning,Taxation
 /Finance/Financial Planning & Management/Retirement & Pension,Economy
 /Finance/Financial Planning & Management/Other,Economy
-/Finance/Grants, Scholarships & Financial Aid/Government Grants,Social Welfare
-/Finance/Grants, Scholarships & Financial Aid/Study Grants & Scholarships,Education
-/Finance/Grants, Scholarships & Financial Aid/Other,Social Welfare
 /Finance/Insurance/Health Insurance,Healthcare
 /Finance/Insurance/Home Insurance,Healthcare
 /Finance/Insurance/Life Insurance,Taxation
@@ -466,7 +464,6 @@
 /Food & Drink/Food/Gourmet & Specialty Foods,Trade
 /Food & Drink/Food/Grains & Pasta,Agriculture
 /Food & Drink/Food/Herbs & Spices,Agriculture
-/Food & Drink/Food/Jams, Jellies & Preserves,Trade
 /Food & Drink/Food/Meat & Seafood,Trade
 /Food & Drink/Food/Meat & Seafood Substitutes,Trade
 /Food & Drink/Food/Organic & Natural Foods,Agriculture
@@ -654,7 +651,6 @@
 /Home & Garden/Home Safety & Security/Other,Social Welfare
 /Home & Garden/Home Storage & Shelving/Cabinetry,Environment
 /Home & Garden/Home Storage & Shelving/Other,Environment
-/Home & Garden/Home Swimming Pools, Saunas & Spas,Environment
 /Home & Garden/Household Supplies/Household Batteries,Energy
 /Home & Garden/Household Supplies/Household Cleaning Supplies,Healthcare
 /Home & Garden/Household Supplies/Other,Agriculture
@@ -670,13 +666,6 @@
 /Home & Garden/Kitchen & Dining/Other,Environment
 /Home & Garden/Laundry/Washers & Dryers,Environment
 /Home & Garden/Laundry/Other,Social Welfare
-/Home & Garden/Patio, Lawn & Garden/Barbecues & Grills,Environment
-/Home & Garden/Patio, Lawn & Garden/Garden Structures,Environment
-/Home & Garden/Patio, Lawn & Garden/Gardening,Environment
-/Home & Garden/Patio, Lawn & Garden/Landscape Design,Environment
-/Home & Garden/Patio, Lawn & Garden/Other,Environment
-/Home & Garden/Patio, Lawn & Garden/Yard Maintenance/Lawn Mowers,Environment
-/Home & Garden/Patio, Lawn & Garden/Yard Maintenance/Other,Environment
 /Home & Garden/Pest Control,Environment
 /Internet & Telecom/Other,Technology
 /Internet & Telecom/Communications Equipment/Radio Equipment,Technology
@@ -754,7 +743,6 @@
 /Law & Government/Military/Army,Defense
 /Law & Government/Military/Marines,Defense
 /Law & Government/Military/Navy,Defense
-/Law & Government/Military/Veterans,Veterans Affairs/Law & Government/Military/Other,Defense
 /Law & Government/Public Safety/Crime & Justice,Judicial System
 /Law & Government/Public Safety/Emergency Services,Civil Rights
 /Law & Government/Public Safety/Law Enforcement,Civil Rights
@@ -788,7 +776,6 @@
 /Online Communities/Dating & Personals/Other,Technology
 /Online Communities/File Sharing & Hosting,Technology
 /Online Communities/Online Goodies/Clip Art & Animated GIFs,Technology
-/Online Communities/Online Goodies/Skins, Themes & Wallpapers,Trade
 /Online Communities/Online Goodies/Social Network Apps & Add-Ons,Technology
 /Online Communities/Online Goodies/Other,Technology
 /Online Communities/Online Journals & Personal Sites,Healthcare
@@ -862,11 +849,9 @@
 /Reference/Other,Immigration
 /Reference/Directories & Listings/Business & Personal Listings,Trade
 /Reference/Directories & Listings/Other,Trade
-/Reference/General Reference/Biographies & Quotations,Veterans Affairs/Reference/General Reference/Calculators & Reference Tools,Technology
 /Reference/General Reference/Dictionaries & Encyclopedias,Education
 /Reference/General Reference/Educational Resources,Education
 /Reference/General Reference/Forms Guides & Templates,Healthcare
-/Reference/General Reference/How-To, DIY & Expert Content,Education
 /Reference/General Reference/Public Records,National Security
 /Reference/General Reference/Time & Calendars,Healthcare
 /Reference/General Reference/Other,Foreign Policy
@@ -910,7 +895,6 @@
 /Sensitive Subjects/Recreational Drugs,Social Welfare
 /Sensitive Subjects/Self-Harm,Social Welfare
 /Sensitive Subjects/Violence & Abuse,Social Welfare
-/Sensitive Subjects/War & Conflict,Veterans Affairs/Sensitive Subjects/Other,Environment
 /Shopping/Antiques & Collectibles,Trade
 /Shopping/Other,Trade
 /Shopping/Apparel/Apparel Services,Trade
@@ -1066,7 +1050,6 @@
 /Travel & Transportation/Tourist Destinations/Regional Parks & Gardens,Transportation
 /Travel & Transportation/Tourist Destinations/Theme Parks,Transportation
 /Travel & Transportation/Tourist Destinations/Vineyards & Wine Tourism,Transportation
-/Travel & Transportation/Tourist Destinations/Zoos, Aquariums & Preserves,Transportation
 /Travel & Transportation/Tourist Destinations/Other,Transportation
 /Travel & Transportation/Transportation/Air Travel,Transportation
 /Travel & Transportation/Transportation/Car Rentals,Transportation
