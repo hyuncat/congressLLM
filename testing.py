@@ -34,16 +34,14 @@ def classify(text, verbose=True):
 
 # Instantiates a client
 client = language_v2.LanguageServiceClient()
-
 # The text to analyze
-text = "SALT MARRIAGE PENALTY ELIMINATION ACT; DENOUNCING THE HARMFUL, ANTI- AMERICAN ENERGY POLICIES OF THE BIDEN ADMINISTRATION"
-
-
-
+text = "THE CHINESE COMMUNIST PARTY CYBER THREAT TO THE AMERICAN HOMELAND AND NATIONAL SECURITY"
 
 result = classify(text, verbose=False)
-
-print(result)
+print("You wrote: ", text)
+print("Content Analysis: ",result)
+print("")
+print("")
 
 
 
