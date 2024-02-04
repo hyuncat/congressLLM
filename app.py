@@ -13,9 +13,11 @@ matplotlib.use('agg')
 from io import BytesIO
 import base64
 
-from flask import Flask
+from flask import Flask, jsonify
 from flask import render_template
 from flask import request
+
+
 
 def interview(text ,temperature: float = .8):
     """Ideation example with a Large Language Model"""
@@ -96,16 +98,49 @@ for row in data_matrix:
     if row[3][0] == '{':
         np.delete(row[3],0)
 
+
+def formatComplex(text):
+    match = re.search(r"'(.*?)'", text)
+    if match:
+        extracted_text = match.group(1)  # Extracted text within single quotes
+        # Replace slashes with comma + space
+        modified_text = re.sub(r'/', ', ', extracted_text)
+        return modified_text
+    else:
+        return
+    
+# Define a function to extract the date from a row
+def extract_date(str):
+    return datetime.strptime(str, "%b %d, %Y")
+
 def search_proceedings(query, search_type):
     results = []
-   
+    relev = {}
+    dates = {}
+    for row in data_matrix:
+        if query in row[3]:
+                results.append({'title': formatComplex(row[2]), 'date': row[1], 'content': row[0]})
+                conf_str = re.search(r'(?<=:\s)(\d+\.\d+)', row[2])
+                if conf_str:
+                    conf = float(conf_str.group())
+                    relev[row[0]] = conf
+                date = extract_date(row[1])
+                dates[row[0]] = date
+
+    # Sort results based on relevance score
     if search_type=="relevance":
-        for row in data_matrix:
-            if row[3].find(query):
-                    results.append({'title': query , 'content': row[0]})
-        return results
-    elif search_type=="date":
-        return
+        results.sort(key=lambda x: relev.get(x['content'], 0), reverse=False)
+
+    elif search_type=="most_recent":
+        for date in dates:
+            results.sort(key=lambda x: dates.get(x['content'], 0), reverse=False)
+    
+    elif search_type=="by_oldest":
+        for date in dates:
+            results.sort(key=lambda x: dates.get(x['content'], 0), reverse=True)
+
+    return results
+
 
 
 topic_list = ["Agriculture", "Civil Rights", "Defense","Economy","Education","Energy" , "Environment", "Foreign Policy" ,"Healthcare", "Immigration", "Infrastructure", "Judicial System", "Labor", "National Security", "Taxation", "Technology", "Trade", "Transportation", "Social Welfare", "Veterans Affairs"]
@@ -169,3 +204,5 @@ def get_top_ten_list():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
