@@ -8,6 +8,44 @@ import numpy
 from flask import Flask
 from flask import render_template
 from flask import request
+def switch_counter(category, list):
+    if category == "Agriculture":
+        list[0] +=1
+    elif category == "Civil Rights":
+        list[1] +=1
+    elif category == "Defense":
+        list[1] +=1
+    elif category == "Economy":
+        list[1] +=1
+    elif category == "Education":
+        list[1] +=1
+    elif category == "Energy":
+        list[1] +=1
+    elif category == "Environment":
+        list[1] +=1
+    elif category == "Foreign Policy":
+        list[1] +=1
+    elif category == "Health Care":
+        list[1] +=1
+    elif category == "Immigration":
+        list[1] +=1
+    elif category == "Infrastructure":
+        list[1] +=1
+    elif category == "Judicial Sytem":
+        list[1] +=1
+    elif category == "Labor":
+        list[1] +=1
+    elif category == "National Security":
+        list[1] +=1
+    elif category == "Trade":
+        list[1] +=1
+    elif category == "Transportation":
+        list[1] +=1
+    elif category == "Social Welfare":
+        list[1] +=1
+    elif category == "Veteran's Affairs":
+        list[1] +=1
+
 """""
 # Step 1: Open the CSV file
 with open('INSERT_SARAH_DATABASE.csv', 'r') as file:
