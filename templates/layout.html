@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='site.css')}}" />
+    
 </head>
 
 <body>
@@ -19,35 +20,31 @@
         <a href="{{ url_for('contact') }}" class="navbar-item">Contact</a>
     </div>
 
-<!-- Search Form and Dropdown Container -->
-<div class="search-dropdown-container">
-    <!-- Search Form -->
+    <!-- Search Form with Dropdown -->
     <form action="{{ url_for('search') }}" method="GET" class="search-form">
         <div class="search-container">
-            <input type="text" name="query" placeholder="Search...">
+            <!-- Dropdown Container -->
+            <div class="dropdown">
+                <!-- Add your dropdown content here -->
+                <select name="query" id="query" placeholder="Search...">
+                    <option value="Arts and Media">Arts and Media</option>
+                    <option value="Business">Business</option>
+                    <option value="Education">Education</option>
+                    <option value="Finance and Economy">Finance and Economy</option>
+                    <option value="Immigration">Immigration</option>
+                    <option value="Jobs">Jobs</option>
+                    <option value="Justice">Justice</option>
+                    <option value="Military">Military</option>
+                    <option value="Religion">Religion</option>
+                    <option value="Technology">Technology</option>
+                    <option value="Technology">Transport</option>
+                </select>
+            </div>
+
+            <!-- Search Button -->
             <button type="submit">Search</button>
         </div>
     </form>
-
-    <!-- Dropdown Container -->
-    <div class="dropdown">
-        <!-- Add your dropdown content here -->
-        <select name="cars" id="cars">
-            <option value="artsmedia">Arts and Media</option>
-            <option value="business">Business</option>
-            <option value="education">Education</option>
-            <option value="financeeconomy">Finance and Economy</option>
-            <option value="immigration">Immigration</option>
-            <option value="jobs">Jobs</option>
-            <option value="justice">Justice</option>
-            <option value="military">Military</option>
-            <option value="religion">Religion</option>
-            <option value="technology">Technology</option>
-            <option value="transport">Transport</option>
-        </select>
-    </div>
-</div>
-
 
     <div class="body-content">
         {% block content %}

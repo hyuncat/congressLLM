@@ -12,6 +12,16 @@ from flask import request
 
 app = Flask(__name__)
 
+def search_proceedings(query):
+    # Implement your search logic here
+    if query == "Business":
+        return [{'title': 'You picked Business!', 'content': 'Details for Business'}]
+    # You can use the selected_category and query to filter and rank proceedings
+    # Return a list of relevant proceedings based on your logic
+    # For now, just returning a sample list
+    return [{'title': 'Proceeding 1', 'content': 'Details for Proceeding 1'},
+            {'title': 'Proceeding 2', 'content': 'Details for Proceeding 2'}]
+
 @app.route("/")
 def home():
     return render_template("home.html")
@@ -41,9 +51,15 @@ def get_data():
 @app.route("/search")
 def search():
     query = request.args.get('query')
-    # Perform search logic here based on the query
-    # Return the search results or render a new template
-    return render_template("search_results.html", query=query)
+    selected_category = request.args.get('cars')
+
+    # Call your search algorithm function
+    results = search_proceedings(query)
+
+    # Render the template with the search results
+    return render_template("search_results.html", query=query, results=results)
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
