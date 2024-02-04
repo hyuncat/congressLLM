@@ -14,8 +14,8 @@ import base64
 from flask import Flask
 from flask import render_template
 from flask import request
-
-
+"""""
+"""
 app = Flask(__name__)
 
 def search_proceedings(query):
@@ -66,9 +66,11 @@ def get_data():
 @app.route("/search")
 def search():
     query = request.args.get('query')
+    search_type = request.args.get('queryoptions')
+   
 
-    # Call search algorithm function
-    results = search_proceedings(query)
+    # Call your search algorithm function
+    results = search_proceedings(query, search_type)
 
     # Render the template with the search results
     return render_template("search_results.html", query=query, results=results)
