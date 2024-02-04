@@ -13,9 +13,11 @@ Search Results
                 <ul>
                     {% for result in results %}
                         <li>
+
                             <h3>{{result['title'] }}</h3>
                             <p>{{ result['date'] }}</p>
                             <p>{{ result['content'] }}</p>
+
                         </li>
                     {% endfor %}
                 </ul>
