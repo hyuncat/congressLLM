@@ -119,19 +119,29 @@ def parse_pdf(url, date):
                 endIndex = int(block.layout.text_anchor.text_segments[0].end_index)
      
                 subtext = trim_text(text[startIndex:endIndex])
-                c_cat = complex_classify(subtext, verbose=False)
+
+                super_subtext = subtext.split()
+                if len(super_subtext) < 10:
+                    continue
+
+                try:
+                    c_cat = complex_classify(subtext, verbose=False)
+                except:
+                    continue
+
                 s_cat = {}
 
                 # Create dictionary of new simple categories + confidence values
                 for key in c_cat:
+                    print(key)
                     s_cat_row = simple_keys[simple_keys['complex'] == key]
-                    if not s_cat_row.empty:
-                        if s_cat_row.shape[0] > 1:
-                            s_cat_key = s_cat_row.iloc[0, 1]
-                        else:
-                            s_cat_key = s_cat_row['simple']
-                    else:
-                        s_cat_key = "Other"
+                    
+                    if s_cat_row.empty:
+                        continue
+
+                    s_cat_row = s_cat_row.iloc[0]
+                    print(s_cat_row)
+                    s_cat_key = s_cat_row['simple']
                     s_cat.update({s_cat_key: c_cat[key]}) # Append key value pair to dictionary
 
                 # Create dictionary of new simple categories + confidence values
