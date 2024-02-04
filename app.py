@@ -79,9 +79,8 @@ def search_proceedings(query, search_type):
    
     if search_type=="relevance":
         for row in data_matrix:
-            categories = row[3].split(',')
-            if query in categories:
-                    results.append({'title': query , 'content': row[3]})
+            if row[3].find(query):
+                    results.append({'title': query , 'content': row[0]})
 
                     
                     
