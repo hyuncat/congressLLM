@@ -6,6 +6,7 @@ import requests
 from bs4 import BeautifulSoup
 import numpy
 import pandas as pd
+import json
 
 from google.api_core.client_options import ClientOptions
 from google.cloud import documentai
@@ -151,8 +152,8 @@ def parse_pdf(url, date):
 
                 text_blocks.append(subtext)
                 date_vec.append(date)
-                complex_cat.append(c_cat)
-                simple_cat.append(s_cat)
+                complex_cat.append(json.dumps(c_cat))
+                simple_cat.append(json.dumps(s_cat))
 
                 print(f"Block {count} read.")
                 count += 1

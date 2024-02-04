@@ -3,8 +3,10 @@ from datetime import datetime
 import argparse
 import json
 import os
-import numpy as np
+import numpy
 import csv
+import numpy as np
+import pandas as pd
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -15,6 +17,7 @@ import base64
 from flask import Flask
 from flask import render_template
 from flask import request
+
 def switch_counter(category, list):
     if category == "Agriculture":
         list[0] +=1
@@ -61,42 +64,18 @@ def switch_counter(category, list):
 """
 app = Flask(__name__)
 
-with open('static/full_data.csv', 'r') as file:
-    # Step 2: Create a CSV reader
-    csv_reader = csv.reader(file)
+def search_db(category, search_type):
+    # Read csv in as pandas dataframe
+    df = pd.read_csv('./static/full_data.csv', header=0)
 
-    # Step 3: Convert the CSV data into a list of lists
-    data_list = list(csv_reader)
+    # Convert strings to dictionaries
+    df['SimpleCategory'] = json.loads(df['SimpleCategory'])
+    df['ComplexCategory'] = json.loads(df['ComplexCategory'])
 
-# Step 4: Convert the list of lists into a NumPy array
-data_matrix = np.array(data_list)
+    if search_type == "relevance":
+        simple_cat_subset = df[df['SimpleCategory'].apply(lambda x: category in x.keys())]
+        return simple_cat_subset
 
-def search_proceedings(query, search_type):
-    results = []
-    i = 0
-    # Implement your search logic here
-    # if query == "Business":
-    #     return [{'title': 'You picked Business!', 'content': 'Details for Business'}]
-    # You can use the selected_category and query to filter and rank proceedings
-    # Return a list of relevant proceedings based on your logic
-    # For now, just returning a sample list
-
-    # return results
-
-    if search_type=="relevance":
-        for row in data_matrix:
-            for category, confidence in row[4].items:
-                if category == query:
-                    # results[i] = ('title': row[3], 'content': row[1])
-                    # i+=1
-                    pass
-
-        return results
-    elif search_type=="date":
-        pass
-
-    # return [{'title': 'Proceeding 1', 'content': 'Details for Proceeding 1'},
-            # {'title': 'Proceeding 2', 'content': 'Details for Proceeding 2'}]
 
 @app.route("/")
 def home():
@@ -137,7 +116,7 @@ def search():
    
 
     # Call your search algorithm function
-    results = search_proceedings(query, search_type)
+    results = search_db(query, search_type)
 
     # Render the template with the search results
     return render_template("search_results.html", query=query, search_type=search_type, results=results)
