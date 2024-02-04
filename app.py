@@ -56,6 +56,7 @@ def search_proceedings(query, search_type):
 
         # Sort results based on relevance score
         results.sort(key=lambda x: relev.get(x['content'], 0), reverse=False)
+            
         return results
 
     elif search_type=="date":
