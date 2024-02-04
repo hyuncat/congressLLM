@@ -3,17 +3,9 @@
 Home
 {% endblock %}
 {% block content %}
-<h2>Top Ten List</h2>
-<ul>
-    {% for item in top_ten_list %}
-        <li>{{ item }}</li>
-    {% endfor %}
-</ul>
+<h2>The most talked about topic in congress today was: {{topic}} </h2>
+<h3>{{summary}}</h3>
 
-<div class="histogram-container">
-    <h2>Matplotlib Histogram</h2>
-    <img src="data:image/png;base64,{{ plot_data }}" alt="Matplotlib Histogram" class="centered-image">
-</div>
 
 </script>
 
