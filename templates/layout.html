@@ -21,7 +21,6 @@
     </div>
 
     <!-- Search Form with Dropdown -->
-    <!-- Search Form with Dropdown -->
     <form action="{{ url_for('search') }}" method="GET" class="search-form">
         <div class="search-dropdown-container">
             <!-- Dropdown Container -->
@@ -45,6 +44,16 @@
                     <option value="Transportation">Transportation</option>
                     <option value="Social Welfare">Social Welfare</option>
                     <option value="Veterans Affairs">Veterans Affairs</option>
+                </select>
+            </div>
+
+            <!-- Dropdown Container 2 -->
+            <div class="dropdown">
+                <select name="queryoptions" id="queryoptions">
+                    <option value="Sort by relevance">Sort by relevance</option>
+                    <option value="Sort by most recent">Sort by most recent</option>
+                    <option value="Sort by oldest">Sort by oldest</option>
+                <!-- Options for the second dropdown -->
                 </select>
             </div>
 
