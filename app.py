@@ -12,7 +12,7 @@ matplotlib.use('agg')
 from io import BytesIO
 import base64
 
-from flask import Flask
+from flask import Flask, jsonify
 from flask import render_template
 from flask import request
 
