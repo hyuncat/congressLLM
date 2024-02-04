@@ -107,8 +107,10 @@ def read_remote_pdf(url):
 df = read_remote_pdf('https://www.govinfo.gov/content/pkg/CREC-2024-01-31/pdf/CREC-2024-01-31-dailydigest.pdf')
 
 
+'''
 for i in df:
     print(i)
     print(classify(i, verbose=False))
     print("")
     print("")
+'''
