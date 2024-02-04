@@ -70,30 +70,25 @@ with open('static/full_data.csv', 'r') as file:
 
 # Step 4: Convert the list of lists into a NumPy array
 data_matrix = np.array(data_list)
+for row in data_matrix:
+    if row[3][0] == '{':
+        np.delete(row[3],0)
 
 def search_proceedings(query, search_type):
     results = []
-    i = 0
-    # Implement your search logic here
-    # if query == "Business":
-    #     return [{'title': 'You picked Business!', 'content': 'Details for Business'}]
-    # You can use the selected_category and query to filter and rank proceedings
-    # Return a list of relevant proceedings based on your logic
-    # For now, just returning a sample list
-
-    # return results
-
+   
     if search_type=="relevance":
         for row in data_matrix:
-            for category, confidence in row[4].items:
-                if category == query:
-                    # results[i] = ('title': row[3], 'content': row[1])
-                    # i+=1
-                    pass
+            categories = row[3].split(',')
+            if query in categories:
+                    results.append({'title': query , 'content': row[3]})
+
+                    
+                    
 
         return results
     elif search_type=="date":
-        pass
+        return
 
     # return [{'title': 'Proceeding 1', 'content': 'Details for Proceeding 1'},
             # {'title': 'Proceeding 2', 'content': 'Details for Proceeding 2'}]
@@ -148,3 +143,5 @@ def get_top_ten_list():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
