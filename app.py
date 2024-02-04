@@ -8,7 +8,7 @@ import numpy
 from flask import Flask
 from flask import render_template
 from flask import request
-
+"""""
 # Step 1: Open the CSV file
 with open('INSERT_SARAH_DATABASE.csv', 'r') as file:
     # Step 2: Create a CSV reader
@@ -19,7 +19,7 @@ with open('INSERT_SARAH_DATABASE.csv', 'r') as file:
 
 # Step 4: Convert the list of lists into a NumPy array
 data_matrix = np.array(data_list)
-
+"""
 app = Flask(__name__)
 
 def search_proceedings(query, search_type):
@@ -30,11 +30,11 @@ def search_proceedings(query, search_type):
         for row in data_matrix:
             for category, confidence in row[4].items:
                 if category == query:
-                    results[i] = ('title': row[3], 'content': row[1])
+                    results[i] = {'title': row[3], 'content': row[1]}
                     i+=1
 
         return results
-    elif search_type=="date":
+   # elif search_type=="date":
 
 @app.route("/")
 def home():
@@ -69,7 +69,7 @@ def search():
    
 
     # Call your search algorithm function
-    results = search_proceedings(query, search_type, date)
+    results = search_proceedings(query, search_type)
 
     # Render the template with the search results
     return render_template("search_results.html", query=query, results=results)
