@@ -4,6 +4,7 @@ import argparse
 import json
 import os
 import numpy
+import csv
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -60,7 +61,19 @@ def switch_counter(category, list):
 """
 app = Flask(__name__)
 
+with open('INSERT_SARAH_DATABASE.csv', 'r') as file:
+    # Step 2: Create a CSV reader
+    csv_reader = csv.reader(file)
+
+    # Step 3: Convert the CSV data into a list of lists
+    data_list = list(csv_reader)
+
+# Step 4: Convert the list of lists into a NumPy array
+data_matrix = np.array(data_list)
+
 def search_proceedings(query, queryoptions):
+    results = []
+    i = 0
     # Implement your search logic here
     # if query == "Business":
     #     return [{'title': 'You picked Business!', 'content': 'Details for Business'}]
@@ -70,8 +83,18 @@ def search_proceedings(query, queryoptions):
 
     # return results
 
-    return [{'title': 'Proceeding 1', 'content': 'Details for Proceeding 1'},
-            {'title': 'Proceeding 2', 'content': 'Details for Proceeding 2'}]
+    if search_type=="relevance":
+        for row in data_matrix:
+            for category, confidence in row[4].items:
+                if category == query:
+                    results[i] = ('title': row[3], 'content': row[1])
+                    i+=1
+
+        return results
+    elif search_type=="date":
+
+    # return [{'title': 'Proceeding 1', 'content': 'Details for Proceeding 1'},
+            # {'title': 'Proceeding 2', 'content': 'Details for Proceeding 2'}]
 
 @app.route("/")
 def home():
