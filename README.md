@@ -1,6 +1,8 @@
 # congressLLM
 _Coded in 24 hours by Sarah Hong, Moises Mata, and Andromeda Kepecs for DevFest 2024._
 
+Won: Best Use of Google Cloud!
+
 ## Inspiration
 Our government websites are full of legal jargon that we simply cannot be bothered to try to understand. So, we often rely on news sources for our understanding of legal matters. However, these sources can introduce sensationalism or bias, making the information time-consuming to sift through. Our aim is to transform the often dry and overwhelming Congress proceedings into easily digestible and accessible information. We want to foster a greater understanding of legal proceedings for those who may not possess an avid interest in the intricacies of the legal system.
 
